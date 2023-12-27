@@ -11,7 +11,7 @@ urlpatterns = [
     path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path("i18n/", set_language, name='set_language'),
     path('admin/', admin.site.urls),
-    path('account', include('account_app.urls'))
+    path('', include('account_app.urls'))
 ]
 
 if settings.DEBUG:

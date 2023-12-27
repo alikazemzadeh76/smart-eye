@@ -7,8 +7,8 @@ from .managers import UserManager
 class User(AbstractBaseUser):
     username = models.CharField(max_length=40, unique=True, verbose_name="نام کاربری")
     email = models.EmailField(verbose_name="ایمیل")
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True, verbose_name='فعال')
+    is_admin = models.BooleanField(default=False, verbose_name='مدیر')
     objects = UserManager()
     USERNAME_FIELD = 'username'
     class Meta:
