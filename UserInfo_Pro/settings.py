@@ -26,7 +26,18 @@ SECRET_KEY = 'django-insecure-ko6^k-z7yz&7_c9=cc3$$uawyyazk_l-6r=3dlae7@dwphc-in
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['smart-eye.runflare.run', 'https://smart-eye.runflare.run']
+CSRF_TRUSTED_ORIGINS = [
+    'http://smart-eye.runflare.run', 'https://smart-eye.runflare.run'
+]
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 
 
 # Application definition
@@ -82,10 +93,21 @@ WSGI_APPLICATION = 'UserInfo_Pro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'smart-eyzht_db',
+        'USER': 'root',
+        'PASSWORD': 't!NPGefu6O4wJg3qxGLu',
+        'HOST': 'smart-eye-db-mlb-service',
+        'PORT': '',
     }
 }
 
