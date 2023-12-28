@@ -3,31 +3,17 @@ from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from .models import User
 
+
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=100)
     password = serializers.CharField(max_length=100)
-
-
-class LogoutSerializer(serializers.Serializer):
-    refresh = serializers.CharField()
-
-    def validate(self, data):
-        refresh_token = data.get('refresh')
-        try:
-            token = RefreshToken(refresh_token)
-            token.check_exp()
-        except TokenError as e:
-            binary_error = str(e).encode('utf-8')
-            error_message = binary_error.decode('utf-8')
-            raise serializers.ValidationError(error_message)
-        return data
-
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email')
+
 
 class EditUserNameSerializer(serializers.ModelSerializer):
     class Meta:
@@ -71,6 +57,3 @@ class ChangePasswordSerializer(serializers.Serializer):
             raise ValidationError('رمز عبور مطابقت ندارد', code='passwords not same')
 
         return confirm_password
-
-
-
